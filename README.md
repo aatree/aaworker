@@ -9,7 +9,7 @@ This is easily achieved with clojure script's async.core.
 Responses from a transactional web worker are typically an updated state.
 Hoplon is a nice solution for processing updated state for a reactive web page.
 
-Two items, deflpc and mklocal, will be modeled on the
+Two items, deflpc and mklocal, have been modeled on the
 [Castra](https://github.com/hoplon/castra)'s defrpc and mkremote.
 A mechanism like castra's is necessary here as we will not be using a shared web worker.
 
