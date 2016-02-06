@@ -20,7 +20,7 @@
 (task-options!
   pom {:project     'aatree/aaworker
        :version     +version+
-       :description "Snippets of useful code."
+       :description "An Extensible Transactional Web Worker for Hoplon."
        :url         "https://github.com/aatree/aaworker"
        :scm         {:url "https://github.com/aatree/aaworker"}
        :license     {"EPL" "http://www.eclipse.org/legal/epl-v10.html"}})

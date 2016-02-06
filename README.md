@@ -1,6 +1,8 @@
 # aaworker
 An Extensible Transactional Worker for [Hoplon](https://github.com/hoplon/hoplon)
 
+[![Clojars Project](https://img.shields.io/clojars/v/aatree/aaworker.svg)](https://clojars.org/aatree/aaworker)
+
 When dealing with side-effects, a web worker needs to process one update at a time.
 This is easily achieved with clojure script's async.core.
 
