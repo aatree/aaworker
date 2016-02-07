@@ -13,14 +13,14 @@
   '[adzerk.boot-cljs            :refer [cljs]]
   '[adzerk.bootlaces            :refer :all])
 
-(def +version+ "0.0.1")
+(def +version+ "0.0.2")
 
 (bootlaces! +version+ :dont-modify-paths? true)
 
 (task-options!
   pom {:project     'aatree/aaworker
        :version     +version+
-       :description "An Extensible Transactional Web Worker for Hoplon."
+       :description "An Extensible Web Worker for Hoplon."
        :url         "https://github.com/aatree/aaworker"
        :scm         {:url "https://github.com/aatree/aaworker"}
        :license     {"EPL" "http://www.eclipse.org/legal/epl-v10.html"}})
