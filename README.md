@@ -24,6 +24,24 @@ Demo: [tworker](https://github.com/aatree/aademos/tree/master/tworker)
 
 ## Client API
 
+**(aaworker.lpc/new-worker "worker.js")**
+
+Create a web worker that executes the worker.js file.
+
+**(aaworker.lpc/mklocal 'click "worker.js" state error loading)**
+
+Returns a RPC function to call the click method in the web worker that is
+executing worker.js.
+
+The state cell is where the results of calling click are returned,
+assuming no exception was raised.
+
+The error cell is set to nil if there is no error, or to the exception raised
+when click was called in the web worker.
+
+The loading cell contains a text message while the click method is executing,
+otherwise it is nil.
+
 ## Worker API
 
 ## Change Log
