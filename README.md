@@ -1,7 +1,14 @@
 # aaworker
-An Extensible Worker for [Hoplon](https://github.com/hoplon/hoplon)
+An Extensible Web Worker for [Hoplon](https://github.com/hoplon/hoplon)
 
 [![Clojars Project](https://img.shields.io/clojars/v/aatree/aaworker.svg)](https://clojars.org/aatree/aaworker)
+
+1. [Introduction](#introduction)
+1. [Client API](#client-api)
+1. [Worker API](#worker-api)
+1. [Change Log](#change-log)
+
+## Introduction
 
 Some things, like IndexedDB and crypto tasks, may interfere with the responsiveness
 of a web page. These tasks then are best run using a web worker.
@@ -14,6 +21,10 @@ AAWorker's deflpc and mklocal have been modeled after
 A mechanism like castra's is necessary here as aaworker does not use shared web workers.
 
 Demo: [tworker](https://github.com/aatree/aademos/tree/master/tworker)
+
+## Client API
+
+## Worker API
 
 ## Change Log
 
