@@ -44,6 +44,15 @@ otherwise it is ```nil```.
 
 ## Worker API
 
+**```(aaworker.api/process-requests)```**
+
+Processes requests sent by the client.
+
+**```(aaworker.worker-macros/deflpc click [] body)```**
+
+Defines the ```click``` function and registers it to process ```click```
+requests from the client.
+
 ## Change Log
 
 **0.0.2** - Dropped async.core, added worker notifications.
