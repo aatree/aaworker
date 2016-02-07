@@ -4,8 +4,7 @@
                   [adzerk/bootlaces                          "0.1.13" :scope "test"]
                   [adzerk/boot-test                          "1.1.0" :scope "test"]
                   [adzerk/boot-cljs                          "1.7.228-1" :scope "test"]
-                  [crisptrutski/boot-cljs-test               "0.2.1" :scope "test"]
-                  [org.clojure/core.async                    "0.2.374"]]
+                  [crisptrutski/boot-cljs-test               "0.2.1" :scope "test"]]
   :resource-paths #{"src/client" "src/worker"}
 )
 
