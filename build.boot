@@ -12,7 +12,7 @@
   '[adzerk.boot-cljs            :refer [cljs]]
   '[adzerk.bootlaces            :refer :all])
 
-(def +version+ "0.0.2")
+(def +version+ "0.1.0")
 
 (bootlaces! +version+ :dont-modify-paths? true)
 
