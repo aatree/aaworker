@@ -60,7 +60,7 @@ Processes requests sent by the client.
 Defines the ```click``` function and registers it to process ```click```
 requests from the client.
 
-**```(aaworker.api/send-notice :alert "Something somewhere has gone wrong!")
+**```(aaworker.api/send-notice :alert "Something somewhere has gone wrong!")```**
 
 Sends a notice, in this case an ```:alert```, to the client.
 The client must have already registered a handler for the given type of notice,
