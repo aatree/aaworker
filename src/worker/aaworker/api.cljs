@@ -3,7 +3,7 @@
 
 (def worker-fn-map (atom {}))
 
-(defn register-fn [fn-name f]
+(defn register-fn! [fn-name f]
   (swap! worker-fn-map assoc (keyword fn-name) f))
 
 (defn send-notice [key & args]

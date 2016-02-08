@@ -24,14 +24,15 @@ Demo: [tworker](https://github.com/aatree/aademos/tree/master/tworker)
 
 ## Client API
 
-**```(aaworker.lpc/new-worker "worker.js")```**
+**```(aaworker.lpc/new-worker! "worker.js")```**
 
 Create a web worker that executes the ```worker.js``` file.
 
-**```(aaworker.lpc/mklocal 'click "worker.js" state error loading)```**
+**```(aaworker.lpc/mklocal! 'click "worker.js" state error loading)```**
 
 Returns a RPC function to call the ```click``` method in the web worker that is
-executing ```worker.js```.
+executing ```worker.js```, while also associating the state/error/loading cells
+with the name of the function for the given worker.
 
 The ```state``` cell is where the results of calling ```click``` are returned,
 assuming no exception was raised.
@@ -42,11 +43,11 @@ when ```click``` was called in the web worker.
 The ```loading``` cell contains a text message while the ```click``` method is executing,
 otherwise it is ```nil```.
 
-**```(aaworker.lpc/register-notice-processor "worker.js" :alert (fn [msg] (js/alert msg)))```**
+**```(aaworker.lpc/register-notice-processor! "worker.js" :alert (fn [msg] (js/alert msg)))```**
 
-The ```register-notice-processor``` is creates a handler for one type of notice from a worker.
+The ```register-notice-processor!``` is creates a handler for one type of notice from a worker.
 In this case it creates a handler for alerts coming from the web worker executing ```worker.js```.
-And this particular call to ```register-notice-processor``` occurs when ```new-worker``` is called,
+And this particular call to ```register-notice-processor!``` occurs when ```new-worker!``` is called,
 so that any worker can send an ```:alert``` notice to the client.
 
 ## Worker API
@@ -55,7 +56,7 @@ so that any worker can send an ```:alert``` notice to the client.
 
 Processes requests sent by the client.
 
-**```(aaworker.worker-macros/deflpc click [] body)```**
+**```(aaworker.worker-macros/deflpc! click [] body)```**
 
 Defines the ```click``` function and registers it to process ```click```
 requests from the client.
@@ -66,10 +67,11 @@ Sends a notice, in this case an ```:alert```, to the client.
 The client must have already registered a handler for the given type of notice,
 or the notice will be ignored.
 Arguments after the notice type, e.g. after the ```:alert``` in this case, must match
-the arguments of the registered handler.
+the arguments of the registered handler function.
 
 ## Change Log
 
-**0.0.2** - Dropped async.core, added worker notifications.
+**0.1.0** - Dropped async.core, added worker notifications, 
+added ! to the end of the names of funchtions which alter state.
 
 **0.0.1** - Initial release.

@@ -19,23 +19,23 @@
       (let [f (get-in @worker-map [file-name 2 fn-key])]
         (if f (apply f result))))))
 
-(defn register-responder [file-name fn-name rsp-vec]
+(defn register-responder! [file-name fn-name rsp-vec]
   (swap! worker-map assoc-in [file-name 1 (keyword fn-name)] rsp-vec))
 
-(defn register-notice-processor [file-name key f]
+(defn register-notice-processor! [file-name key f]
   (swap! worker-map assoc-in [file-name 2 key] f))
 
-(defn new-worker [file-name]
+(defn new-worker! [file-name]
   (let [w (js/Worker. file-name)]
     (swap! worker-map assoc file-name
            [w {} {}])
     (set! (.-onmessage w) (partial process-message file-name)))
-  (register-notice-processor file-name :alert
+  (register-notice-processor! file-name :alert
                              (fn [msg]
                                (js/alert msg))))
 
-(defn mklocal [fn-name file-name state error loading]
-  (register-responder file-name fn-name [state error loading])
+(defn mklocal! [fn-name file-name state error loading]
+  (register-responder! file-name fn-name [state error loading])
   (fn [& args]
     (reset! error nil)
     (reset! loading (str "Sending " fn-name " request to worker " file-name "."))
