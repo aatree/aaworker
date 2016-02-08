@@ -14,10 +14,16 @@
         fn-key (first data)
         args (rest data)]
     (try
-      (let [[sf fn] (fn-key @worker-fn-map)
-            rv (apply fn args)
-            msg (prn-str [fn-key :success rv])]
-        (.postMessage js/self msg))
+      (let [[sf f] (fn-key @worker-fn-map)]
+        (if sf
+          (.postMessage js/self (prn-str [fn-key :success (apply f args)]))
+          (let [success
+                (fn [result]
+                    (.postMessage js/self (prn-str [fn-key :success result])))
+                failure
+                (fn [error]
+                    (.postMessage js/self (prn-str [fn-key :failure error])))]
+            (apply f success failure args))))
       (catch :default e
         (.postMessage js/self (prn-str [fn-key :failure e]))))))
 

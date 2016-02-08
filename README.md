@@ -66,9 +66,9 @@ requests from the client.
 Defines the ```idb-read``` asynchronous function and registers it
 to process ```idb-read``` requests from the client.
 
-Two arguments are pre-pended to the function's arguments, success and error.
-These are callback functions which take a single argument, the result or
-exception, respectively.
+Two arguments are pre-pended to the function's arguments, success and failure.
+These are callback functions which take a single argument, a result or
+an error message, respectively.
 
 **```(aaworker.api/send-notice :alert "Something somewhere has gone wrong!")```**
 
