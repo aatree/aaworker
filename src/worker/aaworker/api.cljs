@@ -14,7 +14,7 @@
         fn-key (first data)
         args (rest data)]
     (try
-      (let [fn (fn-key @worker-fn-map)
+      (let [[sf fn] (fn-key @worker-fn-map)
             rv (apply fn args)
             msg (prn-str [fn-key :success rv])]
         (.postMessage js/self msg))

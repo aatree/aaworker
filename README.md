@@ -61,6 +61,15 @@ Processes requests sent by the client.
 Defines the ```click``` function and registers it to process ```click```
 requests from the client.
 
+**```(aaworker.worker-macros/deflapc! idb-read [key] body)```**
+
+Defines the ```idb-read``` asynchronous function and registers it
+to process ```idb-read``` requests from the client.
+
+Two arguments are pre-pended to the function's arguments, success and error.
+These are callback functions which take a single argument, the result or
+exception, respectively.
+
 **```(aaworker.api/send-notice :alert "Something somewhere has gone wrong!")```**
 
 Sends a notice, in this case an ```:alert```, to the client.
@@ -70,6 +79,8 @@ Arguments after the notice type, e.g. after the ```:alert``` in this case, must 
 the arguments of the registered handler function.
 
 ## Change Log
+
+**0.1.1** - Added deflapc! for asynchronous functions.
 
 **0.1.0** - Dropped async.core, added worker notifications, 
 added ! to the end of the names of funchtions which alter state.
