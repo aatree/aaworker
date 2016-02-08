@@ -42,6 +42,13 @@ when ```click``` was called in the web worker.
 The ```loading``` cell contains a text message while the ```click``` method is executing,
 otherwise it is ```nil```.
 
+**```(aaworker.lpc/register-notice-processor "worker.js" :alert (fn [msg] (js/alert msg)))```**
+
+The ```register-notice-processor``` is creates a handler for one type of notice from a worker.
+In this case it creates a handler for alerts coming from the web worker executing ```worker.js```.
+And this particular call to ```register-notice-processor``` occurs when ```new-worker``` is called,
+so that any worker can send an ```:alert``` notice to the client.
+
 ## Worker API
 
 **```(aaworker.api/process-requests)```**
@@ -52,6 +59,14 @@ Processes requests sent by the client.
 
 Defines the ```click``` function and registers it to process ```click```
 requests from the client.
+
+**```(aaworker.api/send-notice :alert "Something somewhere has gone wrong!")
+
+Sends a notice, in this case an ```:alert```, to the client.
+The client must have already registered a handler for the given type of notice,
+or the notice will be ignored.
+Arguments after the notice type, e.g. after the ```:alert``` in this case, must match
+the arguments of the registered handler.
 
 ## Change Log
 
