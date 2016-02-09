@@ -8,4 +8,4 @@
 (defmacro deflapc! [fn-sym args & body]
   `(do
      (defn ~fn-sym [~'success ~'failure ~@args] ~@body)
-     (aaworker.api/register-fn! ~(name fn-sym) [true ~fn-sym])))
+     (aaworker.api/register-fn! ~(name fn-sym) [false ~fn-sym])))

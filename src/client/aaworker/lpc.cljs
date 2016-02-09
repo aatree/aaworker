@@ -4,7 +4,9 @@
 (def worker-map (atom {}))
 
 (defn process-message [file-name event]
+  (println "got message" (read-string(.-data event)))
   (let [[fn-key message-type result] (read-string(.-data event))]
+    (println "got message" fn-key)
     (cond
       (= message-type :success)
       (let [[state error loading] (get-in @worker-map [file-name 1 fn-key])]
@@ -17,7 +19,12 @@
         (reset! error result))
       (= message-type :notice)
       (let [f (get-in @worker-map [file-name 2 fn-key])]
-        (if f (apply f result))))))
+        (println @worker-map)
+        (println "result" result "f" f)
+        (if f
+          (if result
+            (apply f result)
+            (f)))))))
 
 (defn register-responder! [file-name fn-name rsp-vec]
   (swap! worker-map assoc-in [file-name 1 (keyword fn-name)] rsp-vec))
