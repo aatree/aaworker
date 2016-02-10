@@ -20,7 +20,8 @@ AAWorker's deflpc and mklocal have been modeled after
 [Castra](https://github.com/hoplon/castra)'s defrpc and mkremote.
 A mechanism like castra's is necessary here as aaworker does not use shared web workers.
 
-Demo: [tworker](https://github.com/aatree/aademos/tree/master/tworker)
+Demos: [tworker](https://github.com/aatree/aademos/tree/master/tworker)
+[duracell](https://github.com/aatree/aademos/tree/master/duracell)
 
 ## Client API
 
