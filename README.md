@@ -56,6 +56,8 @@ so that any worker can send an ```:alert``` notice to the client.
 
 Processes requests sent by the client.
 
+Once request processing is initiated, a :ready notice is sent back to the client.
+
 **```(aaworker.worker-macros/deflpc! click [] body)```**
 
 Defines the ```click``` function and registers it to process ```click```
@@ -81,6 +83,7 @@ the arguments of the registered handler function.
 ## Change Log
 
 **0.1.1** - Added deflapc! for asynchronous functions.
+Added the :ready notice.
 
 **0.1.0** - Dropped async.core, added worker notifications, 
 added ! to the end of the names of funchtions which alter state.
