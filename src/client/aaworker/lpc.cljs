@@ -41,7 +41,7 @@
   ([fn-name file-name state error loading]
    (mklocal! fn-name file-name state error loading (keyword fn-name)))
   ([fn-name file-name state error loading req-key]
-   (register-responder! file-name fn-name [state error loading])
+   (register-responder! file-name req-key [state error loading])
    (fn [& args]
      (reset! error nil)
      (reset! loading (str "Sending " fn-name " request to worker " file-name "."))
