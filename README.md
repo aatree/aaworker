@@ -31,6 +31,8 @@ Create a web worker that executes the ```worker.js``` file.
 
 **```(aaworker.lpc/mklocal! 'click "worker.js" state error loading)```**
 
+**```(aaworker.lpc/mklocal! 'click "worker.js" state error loading req-key)```**
+
 Returns a RPC function to call the ```click``` method in the web worker that is
 executing ```worker.js```, while also associating the state/error/loading cells
 with the name of the function for the given worker.
@@ -44,10 +46,9 @@ when ```click``` was called in the web worker.
 The ```loading``` cell contains a text message while the ```click``` method is executing,
 otherwise it is ```nil```.
 
-**```(aaworker.lpc/mkreq! 'click "worker.js" state error loading req-key)```**
-
-Similar to mklocal but with the addition of req-key to support the use of multiple
-state cells with the same worker api.
+The optional ```req-key``` identifies the particular request, allowing multiple requests
+with different state cells to the same worker api.
+When not present, ```(keyword fn-name)```--```:click``` in this case--is used.
 
 **```(aaworker.lpc/register-notice-processor! "worker.js" :alert (fn [msg] (js/alert msg)))```**
 

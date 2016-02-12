@@ -12,24 +12,26 @@
 (defn process-request [event]
   (let [data (read-string (.-data event))
         fn-key (first data)
+        data (rest data)
+        req-key (first data)
         args (rest data)]
     (try
       (let [[sf f] (fn-key @worker-fn-map)]
         (if sf
-          (.postMessage js/self (prn-str [fn-key :success (apply f args)]))
+          (.postMessage js/self (prn-str [req-key :success (apply f args)]))
           (let [success
                 (fn [result]
-                  (.postMessage js/self (prn-str [fn-key :success result])))
+                  (.postMessage js/self (prn-str [req-key :success result])))
                 failure
                 (fn [error]
                   (let [error (if (instance? js/Event error)
                                 (-> error .-target .-errorCode)
                                 error)])
-                  (.postMessage js/self (prn-str [fn-key :failure error]))
+                  (.postMessage js/self (prn-str [req-key :failure error]))
                   )]
             (apply f success failure args))))
       (catch :default e
-        (.postMessage js/self (prn-str [fn-key :failure e]))))))
+        (.postMessage js/self (prn-str [req-key :failure e]))))))
 
 (defn process-requests []
   (set! (.-onmessage js/self) process-request)
