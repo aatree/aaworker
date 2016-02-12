@@ -44,6 +44,11 @@ when ```click``` was called in the web worker.
 The ```loading``` cell contains a text message while the ```click``` method is executing,
 otherwise it is ```nil```.
 
+**```(aaworker.lpc/mkreq! 'click "worker.js" state error loading req-key)```**
+
+Similar to mklocal but with the addition of req-key to support the use of multiple
+state cells with the same worker api.
+
 **```(aaworker.lpc/register-notice-processor! "worker.js" :alert (fn [msg] (js/alert msg)))```**
 
 The ```register-notice-processor!``` is creates a handler for one type of notice from a worker.
@@ -82,6 +87,8 @@ Arguments after the notice type, e.g. after the ```:alert``` in this case, must 
 the arguments of the registered handler function.
 
 ## Change Log
+
+**0.1.2** - Added mkreq! for when multiple cells use the same worker api.
 
 **0.1.1** - Added deflapc! for asynchronous functions.
 Added the :ready notice.
