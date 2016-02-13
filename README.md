@@ -90,6 +90,7 @@ the arguments of the registered handler function.
 ## Change Log
 
 **0.1.2** - Added mkreq! for when multiple cells use the same worker api.
+Fixed error handling and argument passing bugs.
 
 **0.1.1** - Added deflapc! for asynchronous functions.
 Added the :ready notice.

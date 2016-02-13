@@ -46,9 +46,7 @@
      (reset! error nil)
      (reset! loading (str "Sending " fn-name " request to worker " file-name "."))
      (let [msg [(keyword fn-name) req-key]
-           msg (if args
-                 (conj msg args)
-                 msg)
+           msg (reduce conj msg args)
            msg (prn-str msg)
            w (get-in @worker-map [file-name 0])]
        (.postMessage w msg)))))

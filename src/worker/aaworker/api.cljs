@@ -24,14 +24,11 @@
                   (.postMessage js/self (prn-str [req-key :success result])))
                 failure
                 (fn [error]
-                  (let [error (if (instance? js/Event error)
-                                (-> error .-target .-errorCode)
-                                error)])
-                  (.postMessage js/self (prn-str [req-key :failure error]))
+                  (.postMessage js/self (prn-str [req-key :failure (str error)]))
                   )]
             (apply f success failure args))))
       (catch :default e
-        (.postMessage js/self (prn-str [req-key :failure e]))))))
+        (.postMessage js/self (prn-str [req-key :failure (str e)]))))))
 
 (defn process-requests []
   (set! (.-onmessage js/self) process-request)
