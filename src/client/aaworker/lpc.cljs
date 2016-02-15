@@ -7,14 +7,15 @@
   (let [[fn-key message-type result] (read-string(.-data event))]
     (cond
       (= message-type :success)
-      (let [[state error loading] (get-in @worker-map [file-name 1 fn-key])]
+      (let [[state error loading counter] (get-in @worker-map [file-name 1 fn-key])]
         (reset! loading nil)
-        (reset! error nil)
-        (reset! state result))
+        (reset! state result)
+        (if counter (swap! counter inc)))
       (= message-type :failure)
-      (let [[state error loading] (get-in @worker-map [file-name 1 fn-key])]
+      (let [[state error loading counter] (get-in @worker-map [file-name 1 fn-key])]
         (reset! loading nil)
-        (reset! error result))
+        (reset! error result)
+        (if counter (swap! counter inc)))
       (= message-type :notice)
       (let [f (get-in @worker-map [file-name 2 fn-key])]
         (if f
@@ -39,9 +40,11 @@
 
 (defn mklocal!
   ([fn-name file-name state error loading]
-   (mklocal! fn-name file-name state error loading (keyword fn-name)))
-  ([fn-name file-name state error loading req-key]
-   (register-responder! file-name req-key [state error loading])
+   (mklocal! fn-name file-name state error loading nil))
+  ([fn-name file-name state error loading counter]
+   (mklocal! fn-name file-name state error loading counter (keyword fn-name)))
+  ([fn-name file-name state error loading counter req-key]
+   (register-responder! file-name req-key [state error loading counter])
    (fn [& args]
      (reset! error nil)
      (reset! loading (str "Sending " fn-name " request to worker " file-name "."))

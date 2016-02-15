@@ -31,7 +31,9 @@ Create a web worker that executes the ```worker.js``` file.
 
 **```(aaworker.lpc/mklocal! 'click "worker.js" state error loading)```**
 
-**```(aaworker.lpc/mklocal! 'click "worker.js" state error loading req-key)```**
+**```(aaworker.lpc/mklocal! 'click "worker.js" state error loading counter)```**
+
+**```(aaworker.lpc/mklocal! 'click "worker.js" state error loading counter req-key)```**
 
 Returns a RPC function to call the ```click``` method in the web worker that is
 executing ```worker.js```, while also associating the state/error/loading cells
@@ -40,11 +42,13 @@ with the name of the function for the given worker.
 The ```state``` cell is where the results of calling ```click``` are returned,
 assuming no exception was raised.
 
-The ```error``` cell is set to ```nil``` if there is no error, or to the exception raised
+The ```error``` cell is set to the exception raised
 when ```click``` was called in the web worker.
 
 The ```loading``` cell contains a text message while the ```click``` method is executing,
 otherwise it is ```nil```.
+
+The optional ```counter``` cell is incremented on completion of a request, successful or otherwise.
 
 The optional ```req-key``` identifies the particular request, allowing multiple requests
 with different state cells to the same worker api.
