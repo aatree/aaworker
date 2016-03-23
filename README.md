@@ -93,6 +93,8 @@ the arguments of the registered handler function.
 
 ## Change Log
 
+**0.1.3** - Updated dependencies.
+
 **0.1.2** - Added mkreq! for when multiple cells use the same worker api.
 Fixed error handling and argument passing bugs.
 Added optional completion counter.
