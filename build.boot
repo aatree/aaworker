@@ -2,7 +2,6 @@
   :dependencies '[[org.clojure/clojure                       "1.8.0"  :scope "provided"]
                   [org.clojure/clojurescript                 "1.8.34" :scope "provided"]
                   [adzerk/bootlaces                          "0.1.13" :scope "test"]
-                  [adzerk/boot-test                          "1.1.1" :scope "test"]
                   [adzerk/boot-cljs                          "1.7.228-1" :scope "test"]]
   :resource-paths #{"src/client" "src/worker"}
 )
